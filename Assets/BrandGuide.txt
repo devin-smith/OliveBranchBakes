@@ -1,0 +1,15 @@
+﻿Olive Branch Bakes - Design Brand Guide
+
+Cream: RGB(250, 246, 235)
+Background color
+
+Olive Green: RGB(81, 100, 63)
+Primary color
+
+Brown: RGB(89, 62, 44)
+Secondary color
+
+Gold: RGB(213, 166, 73)
+Tertiary color
+
+Primary Font: Segoe UI
