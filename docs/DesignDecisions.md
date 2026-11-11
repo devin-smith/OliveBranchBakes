@@ -89,3 +89,48 @@ Three design decisions were documented for this checkpoint.
 The application currently saves and reloads seed data successfully. Pricing, account authentication, and order validation will be implemented and tested in later phases.
 
 Additional design decisions will be documented during Phase 3B, Phase 3C, and Phase 3D.
+
+
+
+## Phase 3C - Design Decisions
+
+### PricingService and IPricingService
+Created IPricingService to define the pricing contract.
+PricingService implements the interface and handles
+subtotal, loyalty discount, sales tax, and total.
+
+The P2 rule applies a 10% discount to signed-in
+customers with at least 3 previous orders.
+Sales tax is calculated after the discount.
+
+### SchedulingService
+Created SchedulingService to enforce quantity limits
+and pickup restrictions.
+
+Guests can order up to 6 of each item.
+Signed-in customers can order up to 24.
+
+Pickup dates must be between 24 hours and 30 days
+in advance. Thanksgiving and Christmas are excluded.
+
+### Customer Accounts
+Created AccountService for registration and sign-in.
+Passwords are stored using salted hashes.
+CustomerSession tracks the signed-in customer.
+
+### Order Processing
+OrderService validates orders and calculates pricing
+before saving. Order confirmations include a unique
+confirmation number and the Received status.
+
+DataStore saves customer accounts and orders to JSON.
+
+### Order Summary
+Updated OrderSummaryForm to display cart items,
+quantities, prices, discounts, tax, pickup date,
+and final order total before confirmation.
+
+### Testing
+Test cases T1-T12 were used to evaluate pricing,
+quantity limits, seasonal availability, and
+pickup restrictions.

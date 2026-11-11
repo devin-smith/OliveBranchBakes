@@ -110,3 +110,46 @@ Expected Results: Calculated before pricing code
 Actual Results: Pending implementation
 Pass/Fail: Pending testing
 
+
+
+## Phase 3C - Final Testing Results
+
+PricingService and SchedulingService were implemented
+and tested against the original Phase 3A calculations.
+
+| Test | Expected Result | Status |
+|---|---|---|
+| T1 | Guest total $54.79 | PASS |
+| T2 | 2 previous orders, no discount | PASS |
+| T3 | 3 previous orders, total $49.31 | PASS |
+| T4 | 4 previous orders, 10% discount | PASS |
+| T5 | Guest $54.79 vs signed-in $49.31 | PASS |
+| T6 | Guest quantity 6 accepted | PASS |
+| T7 | Guest quantity 7 blocked | PASS |
+| T8 | Seasonal item unavailable Nov 30 | PASS |
+| T9 | Quantity zero blocked | PASS |
+| T10 | December 25 pickup blocked | PASS |
+| T11 | Signed-in quantity 24 accepted | PASS |
+| T12 | Signed-in quantity 25 blocked | PASS |
+
+### Pricing Validation
+
+Guest Order:
+Subtotal = $50.50
+Discount = $0.00
+Tax = $4.29
+Total = $54.79
+
+Loyalty Customer:
+Subtotal = $50.50
+Discount = $5.05
+Tax = $3.86
+Total = $49.31
+
+### Additional Functional Testing
+
+- Customer registration and sign-in: PASS
+- Customer session handling: PASS
+- Order summary and pricing display: PASS
+- Order confirmation: PASS
+- JSON order persistence: PASS
