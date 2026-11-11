@@ -11,6 +11,7 @@ namespace OliveBranchBakes.Forms
     {
         private MenuService menuService = new MenuService();
         private CartService cartService = new CartService();
+        private SchedulingService schedulingService = new SchedulingService();
 
         public CustomerOrderForm()
         {
@@ -38,9 +39,12 @@ namespace OliveBranchBakes.Forms
         {
             comboCategory.Items.Clear();
             comboCategory.Items.Add("All Products");
-            comboCategory.Items.Add("Cookies");
-            comboCategory.Items.Add("Cupcakes");
-            comboCategory.Items.Add("Muffins");
+
+            foreach (string category in menuService.GetCategories())
+            {
+                comboCategory.Items.Add(category);
+            }
+
             comboCategory.SelectedIndex = 0;
         }
 
@@ -81,26 +85,72 @@ namespace OliveBranchBakes.Forms
                 $"Subtotal: ${cartService.GetSubtotal():F2}";
         }
 
+
         private void buttonAddCart_Click(object sender, EventArgs e)
         {
             if (listProducts.SelectedItem is Product product)
             {
-                cartService.AddItem(product, (int)numericQuantity.Value);
+                int quantity = (int)numericQuantity.Value;
+
+                // Check existing quantity already in cart.
+                int existingQuantity = cartService.Items
+                    .Where(i => i.Product.ProductId == product.ProductId)
+                    .Sum(i => i.Quantity);
+
+                int newQuantity = existingQuantity + quantity;
+
+                // Determine whether the customer is signed in.
+                bool isSignedIn = CustomerSession.IsSignedIn;
+
+                if (!schedulingService.IsValidQuantity(
+                    newQuantity, isSignedIn))
+                {
+                    MessageBox.Show(
+                        schedulingService.GetQuantityMessage(
+                            isSignedIn),
+                        "Quantity Limit",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                cartService.AddItem(product, quantity);
                 RefreshCart();
             }
         }
+
+
 
         private void buttonUpdateCart_Click(object sender, EventArgs e)
         {
             if (listCart.SelectedItem is CartItem item)
             {
+                int quantity = (int)numericQuantity.Value;
+
+                bool isSignedIn = CustomerSession.IsSignedIn;
+
+                if (!schedulingService.IsValidQuantity(
+                    quantity, isSignedIn))
+                {
+                    MessageBox.Show(
+                        schedulingService.GetQuantityMessage(
+                            isSignedIn),
+                        "Quantity Limit",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
                 cartService.UpdateQuantity(
                     item.Product.ProductId,
-                    (int)numericQuantity.Value);
+                    quantity);
 
                 RefreshCart();
             }
         }
+
 
         private void buttonRemoveCart_Click(object sender, EventArgs e)
         {
@@ -128,10 +178,38 @@ namespace OliveBranchBakes.Forms
         private void label1_Click(object sender, EventArgs e) { }
         private void comboBoxProduct_SelectedIndexChanged(object sender, EventArgs e) { }
 
-        private void buttonOrderSummary_Click(object sender, EventArgs e)
+
+        private void buttonOrderSummary_Click(
+            object sender, EventArgs e)
         {
-            OrderSummaryForm summaryForm = new OrderSummaryForm();
-            summaryForm.ShowDialog();
+            if (cartService.Items.Count == 0)
+            {
+                MessageBox.Show(
+                    "Please add items to your cart first.");
+                return;
+            }
+
+            if (!schedulingService.IsValidPickupDate(
+                dateMenu.Value))
+            {
+                MessageBox.Show(
+                    "Pickup must be between 24 hours " +
+                    "and 30 days from now. Thanksgiving " +
+                    "and Christmas are unavailable.",
+                    "Invalid Pickup Date",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            OrderSummaryForm summaryForm = new OrderSummaryForm(cartService, dateMenu.Value);
+
+            if (summaryForm.ShowDialog() == DialogResult.OK)
+            {
+                RefreshCart();
+            }
         }
+
     }
 }

@@ -53,8 +53,6 @@
             buttonUpdateCart = new Button();
             buttonRemoveCart = new Button();
             labelSubtotal = new Label();
-            labelProduct = new Label();
-            comboBoxProduct = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)numericQuantity).BeginInit();
             SuspendLayout();
             // 
@@ -72,7 +70,7 @@
             // labelQuantity
             // 
             labelQuantity.AutoSize = true;
-            labelQuantity.Location = new Point(702, 224);
+            labelQuantity.Location = new Point(702, 216);
             labelQuantity.Name = "labelQuantity";
             labelQuantity.Size = new Size(68, 20);
             labelQuantity.TabIndex = 2;
@@ -81,7 +79,7 @@
             // 
             // numericQuantity
             // 
-            numericQuantity.Location = new Point(702, 247);
+            numericQuantity.Location = new Point(702, 239);
             numericQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericQuantity.Name = "numericQuantity";
             numericQuantity.Size = new Size(68, 27);
@@ -92,7 +90,7 @@
             // labelPickupDate
             // 
             labelPickupDate.AutoSize = true;
-            labelPickupDate.Location = new Point(416, 147);
+            labelPickupDate.Location = new Point(413, 216);
             labelPickupDate.Name = "labelPickupDate";
             labelPickupDate.Size = new Size(165, 20);
             labelPickupDate.TabIndex = 3;
@@ -102,9 +100,9 @@
             // dateTimePickup
             // 
             dateTimePickup.Format = DateTimePickerFormat.Short;
-            dateTimePickup.Location = new Point(416, 171);
+            dateTimePickup.Location = new Point(416, 239);
             dateTimePickup.Name = "dateTimePickup";
-            dateTimePickup.Size = new Size(165, 27);
+            dateTimePickup.Size = new Size(280, 27);
             dateTimePickup.TabIndex = 2;
             // 
             // labelCustomName
@@ -160,18 +158,18 @@
             // 
             // textAllergies
             // 
-            textAllergies.Location = new Point(32, 378);
+            textAllergies.Location = new Point(34, 361);
             textAllergies.MaxLength = 500;
             textAllergies.Multiline = true;
             textAllergies.Name = "textAllergies";
             textAllergies.ScrollBars = ScrollBars.Vertical;
-            textAllergies.Size = new Size(354, 74);
+            textAllergies.Size = new Size(354, 81);
             textAllergies.TabIndex = 6;
             // 
             // labelAllergies
             // 
             labelAllergies.AutoSize = true;
-            labelAllergies.Location = new Point(32, 355);
+            labelAllergies.Location = new Point(31, 338);
             labelAllergies.Name = "labelAllergies";
             labelAllergies.Size = new Size(141, 20);
             labelAllergies.TabIndex = 10;
@@ -184,7 +182,7 @@
             buttonOrderSummary.FlatStyle = FlatStyle.Flat;
             buttonOrderSummary.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonOrderSummary.ForeColor = Color.White;
-            buttonOrderSummary.Location = new Point(32, 481);
+            buttonOrderSummary.Location = new Point(30, 491);
             buttonOrderSummary.Name = "buttonOrderSummary";
             buttonOrderSummary.Size = new Size(231, 42);
             buttonOrderSummary.TabIndex = 7;
@@ -204,17 +202,19 @@
             // listProducts
             // 
             listProducts.FormattingEnabled = true;
-            listProducts.Location = new Point(32, 251);
+            listProducts.Location = new Point(31, 238);
             listProducts.Name = "listProducts";
             listProducts.Size = new Size(354, 84);
             listProducts.TabIndex = 12;
             // 
             // dateMenu
             // 
+            dateMenu.CustomFormat = "MM/dd/yyyy hh:mm tt";
             dateMenu.Format = DateTimePickerFormat.Short;
-            dateMenu.Location = new Point(641, 171);
+            dateMenu.Location = new Point(416, 171);
             dateMenu.Name = "dateMenu";
-            dateMenu.Size = new Size(129, 27);
+            dateMenu.ShowUpDown = true;
+            dateMenu.Size = new Size(354, 27);
             dateMenu.TabIndex = 13;
             dateMenu.ValueChanged += dateMenu_ValueChanged;
             // 
@@ -230,7 +230,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(641, 148);
+            label1.Location = new Point(413, 148);
             label1.Name = "label1";
             label1.Size = new Size(85, 20);
             label1.TabIndex = 15;
@@ -240,7 +240,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(31, 224);
+            label2.Location = new Point(30, 211);
             label2.Name = "label2";
             label2.Size = new Size(135, 20);
             label2.TabIndex = 16;
@@ -249,7 +249,7 @@
             // listCart
             // 
             listCart.FormattingEnabled = true;
-            listCart.Location = new Point(416, 348);
+            listCart.Location = new Point(413, 338);
             listCart.Name = "listCart";
             listCart.Size = new Size(357, 104);
             listCart.TabIndex = 17;
@@ -261,7 +261,7 @@
             buttonAddCart.FlatStyle = FlatStyle.Flat;
             buttonAddCart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonAddCart.ForeColor = Color.White;
-            buttonAddCart.Location = new Point(413, 289);
+            buttonAddCart.Location = new Point(413, 281);
             buttonAddCart.Name = "buttonAddCart";
             buttonAddCart.Size = new Size(357, 42);
             buttonAddCart.TabIndex = 18;
@@ -275,7 +275,7 @@
             buttonUpdateCart.FlatStyle = FlatStyle.Flat;
             buttonUpdateCart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonUpdateCart.ForeColor = Color.White;
-            buttonUpdateCart.Location = new Point(416, 467);
+            buttonUpdateCart.Location = new Point(413, 457);
             buttonUpdateCart.Name = "buttonUpdateCart";
             buttonUpdateCart.Size = new Size(178, 42);
             buttonUpdateCart.TabIndex = 19;
@@ -289,9 +289,9 @@
             buttonRemoveCart.FlatStyle = FlatStyle.Flat;
             buttonRemoveCart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonRemoveCart.ForeColor = Color.White;
-            buttonRemoveCart.Location = new Point(600, 467);
+            buttonRemoveCart.Location = new Point(597, 457);
             buttonRemoveCart.Name = "buttonRemoveCart";
-            buttonRemoveCart.Size = new Size(170, 42);
+            buttonRemoveCart.Size = new Size(173, 42);
             buttonRemoveCart.TabIndex = 20;
             buttonRemoveCart.Text = "Remove Item";
             buttonRemoveCart.UseVisualStyleBackColor = false;
@@ -299,31 +299,11 @@
             // labelSubtotal
             // 
             labelSubtotal.AutoSize = true;
-            labelSubtotal.Location = new Point(663, 512);
+            labelSubtotal.Location = new Point(663, 513);
             labelSubtotal.Name = "labelSubtotal";
             labelSubtotal.Size = new Size(107, 20);
             labelSubtotal.TabIndex = 21;
             labelSubtotal.Text = "Subtotal: $0.00";
-            // 
-            // labelProduct
-            // 
-            labelProduct.AutoSize = true;
-            labelProduct.Location = new Point(413, 223);
-            labelProduct.Name = "labelProduct";
-            labelProduct.Size = new Size(106, 20);
-            labelProduct.TabIndex = 1;
-            labelProduct.Text = "Select an Item:";
-            labelProduct.Click += labelProduct_Click;
-            // 
-            // comboBoxProduct
-            // 
-            comboBoxProduct.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxProduct.FormattingEnabled = true;
-            comboBoxProduct.Items.AddRange(new object[] { "Chocolate Chip Cookies", "Christmas Cookies", "Cinnamon Rolls", "Blueberry Muffins", "Cannolis" });
-            comboBoxProduct.Location = new Point(413, 246);
-            comboBoxProduct.Name = "comboBoxProduct";
-            comboBoxProduct.Size = new Size(283, 28);
-            comboBoxProduct.TabIndex = 0;
             // 
             // CustomerOrderForm
             // 
@@ -356,8 +336,6 @@
             Controls.Add(labelPickupDate);
             Controls.Add(numericQuantity);
             Controls.Add(labelQuantity);
-            Controls.Add(comboBoxProduct);
-            Controls.Add(labelProduct);
             Controls.Add(labelTitle);
             MinimumSize = new Size(800, 600);
             Name = "CustomerOrderForm";
@@ -395,7 +373,5 @@
         private Button buttonUpdateCart;
         private Button buttonRemoveCart;
         private Label labelSubtotal;
-        private Label labelProduct;
-        private ComboBox comboBoxProduct;
     }
 }

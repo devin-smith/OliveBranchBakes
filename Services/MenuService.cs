@@ -13,31 +13,33 @@ namespace OliveBranchBakes.Services
 
         public MenuService()
         {
-            products.Add(new RegularProduct
-            {
-                ProductId = 1,
-                Name = "Chocolate Chip Cookie",
-                Category = "Cookies",
-                Price = 2.50m
-            });
+            var data = SeedData.Create();
 
-            products.Add(new RegularProduct
+            foreach (var item in data.MenuItems)
             {
-                ProductId = 2,
-                Name = "Vanilla Cupcake",
-                Category = "Cupcakes",
-                Price = 3.00m
-            });
+                Product product;
 
-            products.Add(new SeasonalProduct
-            {
-                ProductId = 3,
-                Name = "Pumpkin Spice Muffin",
-                Category = "Muffins",
-                Price = 3.50m,
-                StartDate = new DateTime(2026, 9, 1),
-                EndDate = new DateTime(2026, 11, 30)
-            });
+                if (item.SeasonStart.HasValue &&
+                    item.SeasonEnd.HasValue)
+                {
+                    product = new SeasonalProduct
+                    {
+                        StartDate = item.SeasonStart.Value,
+                        EndDate = item.SeasonEnd.Value
+                    };
+                }
+                else
+                {
+                    product = new RegularProduct();
+                }
+
+                product.ProductId = item.Id;
+                product.Name = item.Name;
+                product.Category = item.Category;
+                product.Price = item.Price;
+
+                products.Add(product);
+            }
         }
 
         public List<Product> GetAvailableProducts(DateTime date)
@@ -52,6 +54,14 @@ namespace OliveBranchBakes.Services
         {
             return GetAvailableProducts(date)
                 .Where(p => p.Category == category)
+                .ToList();
+        }
+
+        public List<string> GetCategories()
+        {
+            return products
+                .Select(p => p.Category)
+                .Distinct()
                 .ToList();
         }
     }
