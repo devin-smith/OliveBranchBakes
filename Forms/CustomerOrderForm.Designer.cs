@@ -32,7 +32,6 @@
             labelQuantity = new Label();
             numericQuantity = new NumericUpDown();
             labelPickupDate = new Label();
-            dateTimePickup = new DateTimePicker();
             labelCustomName = new Label();
             textCustomerName = new TextBox();
             textCustomerEmail = new TextBox();
@@ -46,7 +45,6 @@
             listProducts = new ListBox();
             dateMenu = new DateTimePicker();
             labelCategory = new Label();
-            label1 = new Label();
             label2 = new Label();
             listCart = new ListBox();
             buttonAddCart = new Button();
@@ -70,7 +68,7 @@
             // labelQuantity
             // 
             labelQuantity.AutoSize = true;
-            labelQuantity.Location = new Point(702, 216);
+            labelQuantity.Location = new Point(413, 211);
             labelQuantity.Name = "labelQuantity";
             labelQuantity.Size = new Size(68, 20);
             labelQuantity.TabIndex = 2;
@@ -79,7 +77,7 @@
             // 
             // numericQuantity
             // 
-            numericQuantity.Location = new Point(702, 239);
+            numericQuantity.Location = new Point(416, 238);
             numericQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numericQuantity.Name = "numericQuantity";
             numericQuantity.Size = new Size(68, 27);
@@ -90,20 +88,12 @@
             // labelPickupDate
             // 
             labelPickupDate.AutoSize = true;
-            labelPickupDate.Location = new Point(413, 216);
+            labelPickupDate.Location = new Point(416, 147);
             labelPickupDate.Name = "labelPickupDate";
             labelPickupDate.Size = new Size(165, 20);
             labelPickupDate.TabIndex = 3;
             labelPickupDate.Text = "Requested Pickup Date:";
             labelPickupDate.Click += labelPickupDate_Click;
-            // 
-            // dateTimePickup
-            // 
-            dateTimePickup.Format = DateTimePickerFormat.Short;
-            dateTimePickup.Location = new Point(416, 239);
-            dateTimePickup.Name = "dateTimePickup";
-            dateTimePickup.Size = new Size(280, 27);
-            dateTimePickup.TabIndex = 2;
             // 
             // labelCustomName
             // 
@@ -227,16 +217,6 @@
             labelCategory.TabIndex = 14;
             labelCategory.Text = "Category:";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(413, 148);
-            label1.Name = "label1";
-            label1.Size = new Size(85, 20);
-            label1.TabIndex = 15;
-            label1.Text = "Menu Date:";
-            label1.Click += label1_Click;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -261,7 +241,7 @@
             buttonAddCart.FlatStyle = FlatStyle.Flat;
             buttonAddCart.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             buttonAddCart.ForeColor = Color.White;
-            buttonAddCart.Location = new Point(413, 281);
+            buttonAddCart.Location = new Point(413, 277);
             buttonAddCart.Name = "buttonAddCart";
             buttonAddCart.Size = new Size(357, 42);
             buttonAddCart.TabIndex = 18;
@@ -318,7 +298,6 @@
             Controls.Add(buttonAddCart);
             Controls.Add(listCart);
             Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(labelCategory);
             Controls.Add(dateMenu);
             Controls.Add(listProducts);
@@ -332,7 +311,6 @@
             Controls.Add(labelCustomerEmail);
             Controls.Add(textCustomerName);
             Controls.Add(labelCustomName);
-            Controls.Add(dateTimePickup);
             Controls.Add(labelPickupDate);
             Controls.Add(numericQuantity);
             Controls.Add(labelQuantity);
@@ -352,7 +330,6 @@
         private Label labelQuantity;
         private NumericUpDown numericQuantity;
         private Label labelPickupDate;
-        private DateTimePicker dateTimePickup;
         private Label labelCustomName;
         private TextBox textCustomerName;
         private TextBox textCustomerEmail;
@@ -366,7 +343,6 @@
         private ListBox listProducts;
         private DateTimePicker dateMenu;
         private Label labelCategory;
-        private Label label1;
         private Label label2;
         private ListBox listCart;
         private Button buttonAddCart;
