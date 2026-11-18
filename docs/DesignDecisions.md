@@ -134,3 +134,21 @@ and final order total before confirmation.
 Test cases T1-T12 were used to evaluate pricing,
 quantity limits, seasonal availability, and
 pickup restrictions.
+
+
+## Phase 3D - Final Design Decisions
+
+During Phase 3D, I decided to keep the current
+PricingService and SchedulingService because both
+were working correctly during testing. Separating
+these services from the forms helps keep the
+application organized and makes future changes easier.
+
+I also removed an unused DateTimePicker control and
+continued using dateMenu for both seasonal product
+availability and pickup scheduling. This simplified 
+the CustomerOrderForm without changing its main functionality.
+
+The final application uses object-oriented programming
+principles such as encapsulation, inheritance, and 
+interfaces to organize the code and reduce unnecessary duplication.
